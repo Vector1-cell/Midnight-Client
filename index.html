@@ -24,7 +24,7 @@
             position: relative;
         }
 
-        /* Subtle ambient background glow */
+        /* Ambient background glow */
         body::before {
             content: '';
             position: absolute;
@@ -57,6 +57,7 @@
             font-size: 24px;
             font-weight: 900;
             letter-spacing: 2px;
+            cursor: pointer;
         }
 
         .logo span {
@@ -76,10 +77,25 @@
             font-size: 14px;
             text-transform: uppercase;
             transition: color 0.3s ease;
+            cursor: pointer;
         }
 
-        .nav-links a:hover {
+        .nav-links a:hover, .nav-links a.active-link {
             color: #ffffff;
+        }
+
+        /* Dynamic Page Handling */
+        .page {
+            display: none; /* Hidden by default */
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+            padding-top: 100px; /* Space for fixed navbar */
+            min-height: 100vh;
+        }
+
+        .page.active {
+            display: block; /* Show active page */
+            opacity: 1;
         }
 
         /* Glass Buttons */
@@ -142,9 +158,9 @@
             font-size: 16px;
         }
 
-        /* Hero Section */
+        /* HOME PAGE VIEW */
         .hero {
-            height: 100vh;
+            height: calc(100vh - 100px);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -181,9 +197,9 @@
             gap: 20px;
         }
 
-        /* Features Section */
-        .features {
-            padding: 100px 50px;
+        /* FEATURES PAGE VIEW */
+        .features-container {
+            padding: 60px 50px;
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -194,7 +210,7 @@
         }
 
         .features-header h2 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: 900;
             letter-spacing: 1px;
         }
@@ -206,19 +222,19 @@
         .features-header p {
             color: rgba(255, 255, 255, 0.6);
             margin-top: 10px;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
         }
 
-        /* Responsive Grid Layout */
+        /* Main Feature Highlights */
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
+            margin-bottom: 80px;
         }
 
-        /* Glassmorphism Cards */
         .glass-card {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.02);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.05);
@@ -227,70 +243,89 @@
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
-            cursor: default;
-        }
-
-        .glass-card::before {
-            content: '';
-            position: absolute;
-            top: -50%; 
-            left: -50%; 
-            width: 200%; 
-            height: 200%;
-            background: radial-gradient(circle, rgba(94, 92, 230, 0.15) 0%, rgba(0,0,0,0) 60%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .glass-card:hover::before {
-            opacity: 1;
         }
 
         .glass-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-8px);
             border-color: rgba(94, 92, 230, 0.4);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(94, 92, 230, 0.2);
         }
 
-        .card-icon, .glass-card h3, .glass-card p {
-            position: relative;
-            z-index: 1;
-        }
-
         .card-icon {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 20px;
+            display: inline-block;
         }
 
         .glass-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             margin-bottom: 15px;
             font-weight: 700;
         }
 
         .glass-card p {
             color: rgba(255, 255, 255, 0.6);
-            font-size: 0.95rem;
+            font-size: 1rem;
             line-height: 1.6;
+        }
+
+        /* OS Compatibility Sector */
+        .os-section {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            padding: 50px;
+            border-radius: 24px;
+            backdrop-filter: blur(10px);
+        }
+
+        .os-section h3 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .os-section p {
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 40px;
+        }
+
+        .os-grid {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .os-card {
+            padding: 20px 40px;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .os-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
         }
 
         /* Mobile Adjustments */
         @media (max-width: 768px) {
-            .features {
-                padding: 60px 20px;
+            .features-container {
+                padding: 40px 20px;
             }
             .features-header h2 {
-                font-size: 2.2rem;
+                font-size: 2.5rem;
             }
             .hero-content h1 {
-                font-size: 3rem;
+                font-size: 2.8rem;
             }
             .nav-links {
-                display: none; /* Hides links on small screens for cleaner look */
+                display: none; /* Kept simple for mobile layout */
             }
             .hero-buttons {
+                flex-direction: column;
+            }
+            .os-grid {
                 flex-direction: column;
             }
         }
@@ -299,65 +334,107 @@
 <body>
 
     <nav class="glass-nav">
-        <div class="logo">MIDNIGHT<span>CLIENT</span></div>
+        <div class="logo" onclick="switchPage('home')">MIDNIGHT<span>CLIENT</span></div>
         <ul class="nav-links">
-            <li><a href="#">Home</a></li>
+            <li><a id="nav-home" class="active-link" onclick="switchPage('home')">Home</a></li>
+            <li><a id="nav-features" onclick="switchPage('features')">Features</a></li>
             <li><a href="#">Store</a></li>
-            <li><a href="#">Forums</a></li>
             <li><a href="#">Support</a></li>
         </ul>
-        <a href="#" class="glass-btn small-btn">Download</a>
+        <a id="download-shortcut" onclick="switchPage('features')" class="glass-btn small-btn">Download</a>
     </nav>
 
-    <main class="hero">
-        <div class="hero-content">
-            <h1>THE ULTIMATE<br><span>GAMING EXPERIENCE</span></h1>
-            <p>Boost your frames, enhance your gameplay, and dominate the night with our all-in-one modpack.</p>
-            <div class="hero-buttons">
-                <a href="#" class="glass-btn primary-btn">Download Now</a>
-                <a href="#features" class="glass-btn secondary-btn">View Features</a>
+    <div id="page-home" class="page active">
+        <main class="hero">
+            <div class="hero-content">
+                <h1>THE ULTIMATE<br><span>GAMING EXPERIENCE</span></h1>
+                <p>Boost your frames, eliminate network lag, and dominate the competition with our custom modules.</p>
+                <div class="hero-buttons">
+                    <a onclick="switchPage('features')" class="glass-btn primary-btn">Download Now</a>
+                    <a onclick="switchPage('features')" class="glass-btn secondary-btn">Explore Features</a>
+                </div>
             </div>
-        </div>
-    </main>
+        </main>
+    </div>
 
-    <section class="features" id="features">
-        <div class="features-header">
-            <h2>BUILT-IN <span>MODS</span></h2>
-            <p>Everything you need, right out of the box. No hassle, just performance.</p>
-        </div>
-        
-        <div class="features-grid">
-            <div class="glass-card">
-                <div class="card-icon">⚡</div>
-                <h3>FPS Boost</h3>
-                <p>Significantly increases your framerate and smooths out gameplay with custom rendering tweaks.</p>
+    <div id="page-features" class="page">
+        <section class="features-container">
+            <div class="features-header">
+                <h2>CLIENT <span>FEATURES</span></h2>
+                <p>Engineered for competitive players who demand absolute performance.</p>
             </div>
             
-            <div class="glass-card">
-                <div class="card-icon">🎯</div>
-                <h3>Custom Crosshair</h3>
-                <p>Fully customize your crosshair size, color, and shape to hit your shots with perfect precision.</p>
+            <div class="features-grid">
+                <div class="glass-card">
+                    <span class="card-icon">🌐</span>
+                    <h3>Ping Booster</h3>
+                    <p>Optimizes network packets and stabilizes your connection route to game servers, heavily reducing registry delays and routing spikes.</p>
+                </div>
+                
+                <div class="glass-card">
+                    <span class="card-icon">⚡</span>
+                    <h3>FPS Booster</h3>
+                    <p>Features enhanced multithreaded rendering, optimized entities, and custom fast-math algorithms to triple your frame rate instantly.</p>
+                </div>
+                
+                <div class="glass-card">
+                    <span class="card-icon">⚙️</span>
+                    <h3>150+ Modules</h3>
+                    <p>Fully customize your UI, keystrokes, crosshairs, armor status, mini-maps, and HUD elements with a sprawling, toggleable mod repository.</p>
+                </div>
             </div>
-            
-            <div class="glass-card">
-                <div class="card-icon">⌨️</div>
-                <h3>Keystrokes</h3>
-                <p>Show your mouse clicks, WASD movement, and CPS directly on your screen in real-time.</p>
+
+            <div class="os-section">
+                <h3>Cross-Platform Deployment</h3>
+                <p>Midnight Client runs natively on your favorite operating systems with 0-setup installation processes.</p>
+                
+                <div class="os-grid">
+                    <div class="glass-btn os-card">
+                        <div class="os-icon">🪟</div>
+                        <div>Windows OS</div>
+                    </div>
+                    <div class="glass-btn os-card">
+                        <div class="os-icon">🍏</div>
+                        <div>macOS</div>
+                    </div>
+                    <div class="glass-btn os-card">
+                        <div class="os-icon">🐧</div>
+                        <div>LinuxOS</div>
+                    </div>
+                </div>
             </div>
-            
-            <div class="glass-card">
-                <div class="card-icon">🛡️</div>
-                <h3>Anti-Cheat</h3>
-                <p>Play safely on partnered servers with our industry-leading client-side anti-cheat protection.</p>
-            </div>
-        </div>
-    </section>
+        </section>
+    </div>
     
     <script>
+        // Simple Page Router Function
+        function switchPage(pageId) {
+            // Hide all pages and remove active styling from nav links
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active-link');
+            });
+
+            // Activate chosen page view
+            const targetedPage = document.getElementById(`page-${pageId}`);
+            targetedPage.classList.add('active');
+            
+            // Highlight current link in navigation bar
+            const targetedNavLink = document.getElementById(`nav-${pageId}`);
+            if (targetedNavLink) {
+                targetedNavLink.classList.add('active-link');
+            }
+
+            // Scroll to the very top smoothly when changing "pages"
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Tactile Press Effect for Glass Buttons
         document.addEventListener("DOMContentLoaded", () => {
             const buttons = document.querySelectorAll('.glass-btn');
 
-            // Add a tactile "press" effect when clicking the glass buttons
             buttons.forEach(btn => {
                 btn.addEventListener('mousedown', () => {
                     btn.style.transform = 'translateY(2px) scale(0.98)';
@@ -368,8 +445,7 @@
                 });
                 
                 btn.addEventListener('mouseleave', () => {
-                    // Resets the button if the user drags their mouse off while clicking
-                    btn.style.transform = 'translateY(0) scale(1)';
+                    btn.style.transform = '';
                 });
             });
         });
