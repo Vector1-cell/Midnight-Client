@@ -1,5 +1,5 @@
 /* ==========================================
-   SHARED DESIGN SYSTEM & CONFIG
+   GLOBAL STYLES & RESET
    ========================================== */
 * {
     margin: 0;
@@ -8,7 +8,6 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-/* Midnight Theme Background */
 body {
     background: radial-gradient(circle at top right, #16162a 0%, #05050a 100%);
     color: #ffffff;
@@ -17,7 +16,7 @@ body {
     position: relative;
 }
 
-/* Ambient background glow */
+/* Midnight ambient glow background */
 body::before {
     content: '';
     position: absolute;
@@ -146,7 +145,7 @@ body::before {
 }
 
 /* ==========================================
-   HOME PAGE (HERO)
+   HOME PAGE (HERO STYLE)
    ========================================== */
 .hero {
     height: 100vh;
@@ -187,7 +186,7 @@ body::before {
 }
 
 /* ==========================================
-   FEATURES PAGE LAYOUT
+   FEATURES GRID & CARD ARCHITECTURE
    ========================================== */
 .features-container {
     padding: 140px 50px 80px 50px;
@@ -220,7 +219,7 @@ body::before {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
-    margin-bottom: 80px;
+    margin-bottom: 40px;
 }
 
 .glass-card {
@@ -259,43 +258,120 @@ body::before {
     line-height: 1.6;
 }
 
-/* OS COMPATIBILITY SECTION */
-.os-section {
-    text-align: center;
-    background: rgba(255, 255, 255, 0.01);
-    border: 1px solid rgba(255, 255, 255, 0.03);
-    padding: 50px;
-    border-radius: 24px;
-    backdrop-filter: blur(10px);
+.mod-category-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 60px 0 30px 0;
+    letter-spacing: 1px;
+    border-left: 4px solid #5e5ce6;
+    padding-left: 15px;
 }
 
-.os-section h3 {
-    font-size: 2rem;
-    margin-bottom: 15px;
+.mod-status-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(94, 92, 230, 0.2);
+    border: 1px solid rgba(94, 92, 230, 0.5);
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 700;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.highlight-text {
+    color: #5e5ce6;
     font-weight: 700;
 }
 
-.os-section p {
-    color: rgba(255, 255, 255, 0.5);
-    margin-bottom: 40px;
-}
-
-.os-grid {
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    flex-wrap: wrap;
-}
-
-.os-card {
-    padding: 20px 40px;
-    min-width: 200px;
+/* ==========================================
+   DOWNLOAD PAGE PLATFORMS Layout
+   ========================================== */
+.download-container {
+    padding: 160px 20px 80px 20px;
+    max-width: 1100px;
+    margin: 0 auto;
     text-align: center;
 }
 
+.download-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 60px;
+}
+
+.download-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 50px 30px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.download-card .os-icon, 
+.download-card h3 {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.download-card:hover {
+    border-color: rgba(94, 92, 230, 0.2);
+    background: rgba(255, 255, 255, 0.03);
+    transform: translateY(-5px);
+}
+
+.download-card:hover .os-icon,
+.download-card:hover h3 {
+    opacity: 1;
+}
+
 .os-icon {
-    font-size: 2rem;
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+.download-card h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
     margin-bottom: 10px;
+}
+
+.os-specs {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 30px;
+}
+
+.status-btn {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.4);
+    cursor: not-allowed;
+    pointer-events: none;
+    width: 100%;
+    padding: 14px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.download-card:hover .status-btn {
+    border-color: rgba(94, 92, 230, 0.4);
+    color: #5e5ce6;
+    background: rgba(94, 92, 230, 0.05);
+    box-shadow: 0 0 15px rgba(94, 92, 230, 0.1);
 }
 
 /* ==========================================
@@ -315,9 +391,6 @@ body::before {
         display: none;
     }
     .hero-buttons {
-        flex-direction: column;
-    }
-    .os-grid {
         flex-direction: column;
     }
 }
