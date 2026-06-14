@@ -43,10 +43,9 @@
         .download-card:hover {
             transform: translateY(-10px);
             background: rgba(255, 255, 255, 0.03);
-            border-color: rgba(168, 85, 247, 0.4);
         }
 
-        /* --- THE LOGO STYLE ARCHITECTURE --- */
+        /* --- THE LOGO STYLE ARCHITECTURE (ANTI-DISTORTION) --- */
         .logo-box {
             width: 100px;
             height: 100px;
@@ -56,7 +55,7 @@
             justify-content: center;
         }
 
-        /* Pure CSS Frosted Windows 11 Logo Layout */
+        /* Windows 11 Frosted Glass Native Four-Color Grid */
         .windows-glass-logo {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -66,54 +65,71 @@
         }
 
         .win-tile {
-            background: linear-gradient(135deg, rgba(216, 180, 254, 0.45), rgba(59, 130, 246, 0.45));
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
         }
 
-        /* Explicit corner radii mimicking Windows 11 */
-        .win-tile:nth-child(1) { border-top-left-radius: 14px; }
-        .win-tile:nth-child(2) { border-top-right-radius: 14px; }
-        .win-tile:nth-child(3) { border-bottom-left-radius: 14px; }
-        .win-tile:nth-child(4) { border-bottom-right-radius: 14px; }
+        /* Original Microsoft Branding Color Palette (Frosted) */
+        .win-tile.tl { background: rgba(242, 80, 34, 0.45); border-top-left-radius: 14px; }     /* Red-Orange */
+        .win-tile.tr { background: rgba(127, 186, 0, 0.45); border-top-right-radius: 14px; }    /* Green */
+        .win-tile.bl { background: rgba(0, 164, 239, 0.45); border-bottom-left-radius: 14px; }   /* Blue */
+        .win-tile.br { background: rgba(255, 185, 0, 0.45); border-bottom-right-radius: 14px; }  /* Yellow */
 
-        /* Unified Frosted Glass Tile for macOS and Linux */
-        .os-glass-tile {
+        /* macOS Premium Frosted Acrylic Tile */
+        .mac-glass-tile {
             width: 80px;
             height: 80px;
-            border-radius: 20px;
-            background: linear-gradient(135deg, rgba(216, 180, 254, 0.45), rgba(59, 130, 246, 0.45));
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            border-radius: 22px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.25);
             display: flex;
             align-items: center;
             justify-content: center;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-            transition: all 0.4s ease;
         }
 
-        /* Absolute anti-distortion layout fixes */
-        .os-glass-tile svg {
-            width: 42px;
-            height: 42px;
-            aspect-ratio: 1 / 1; /* Hard lock to prevent horizontal/vertical stretching */
-            fill: rgba(255, 255, 255, 0.9);
+        /* Pure Absolute Fixed Sizing for Mac Graphic */
+        .mac-glass-tile svg {
+            width: 44px;
+            height: 44px;
+            fill: rgba(255, 255, 255, 0.85);
             flex-shrink: 0;
-            display: block;
         }
 
-        /* Micro-interactions on Card Hover */
-        .download-card:hover .win-tile,
-        .download-card:hover .os-glass-tile {
-            background: linear-gradient(135deg, rgba(216, 180, 254, 0.65), rgba(94, 92, 230, 0.65));
-            border-color: rgba(255, 255, 255, 0.4);
-            box-shadow: 0 0 25px rgba(168, 85, 247, 0.4);
-            transform: scale(1.03);
+        /* Linux Frosted Gold/Dark Glass Tile */
+        .linux-glass-tile {
+            width: 80px;
+            height: 80px;
+            border-radius: 22px;
+            background: rgba(255, 214, 10, 0.15); /* Tinted with Linux gold */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 214, 10, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
         }
+
+        /* Absolute Sizing + Hard Grid constraints to stop Tux distortion */
+        .linux-glass-tile svg {
+            width: 46px;
+            height: 46px;
+            flex-shrink: 0;
+        }
+
+        /* Hover Glow Effects using respective Brand Colors */
+        .download-card:nth-child(1):hover { border-color: rgba(0, 164, 239, 0.4); }
+        .download-card:nth-child(2):hover { border-color: rgba(255, 255, 255, 0.3); }
+        .download-card:nth-child(3):hover { border-color: rgba(255, 214, 10, 0.4); }
+
+        .download-card:hover .win-tile { filter: brightness(1.15); }
+        .download-card:hover .mac-glass-tile { background: rgba(255, 255, 255, 0.18); }
+        .download-card:hover .linux-glass-tile { background: rgba(255, 214, 10, 0.25); }
 
         .download-card h3 {
             font-size: 2.2rem;
@@ -147,9 +163,8 @@
 
         .download-card:hover .status-btn {
             color: white;
-            background: rgba(168, 85, 247, 0.2);
-            border-color: rgba(168, 85, 247, 0.4);
-            box-shadow: 0 0 15px rgba(168, 85, 247, 0.1);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
         }
     </style>
 </head>
@@ -177,10 +192,10 @@
             <div class="download-card">
                 <div class="logo-box">
                     <div class="windows-glass-logo">
-                        <div class="win-tile"></div>
-                        <div class="win-tile"></div>
-                        <div class="win-tile"></div>
-                        <div class="win-tile"></div>
+                        <div class="win-tile tl"></div>
+                        <div class="win-tile tr"></div>
+                        <div class="win-tile bl"></div>
+                        <div class="win-tile br"></div>
                     </div>
                 </div>
                 <h3>Windows</h3>
@@ -190,9 +205,9 @@
 
             <div class="download-card">
                 <div class="logo-box">
-                    <div class="os-glass-tile">
-                        <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet">
-                            <path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.029-3.91 1.183-4.961 3.014-2.117 3.675-.54 9.103 1.51 12.06 1.005 1.45 2.176 3.074 3.746 3.014 1.512-.06 2.087-.975 3.913-.975 1.824 0 2.342.975 3.912.945 1.6-.029 2.628-1.47 3.61-2.89 1.135-1.655 1.602-3.257 1.626-3.344-.035-.015-3.123-1.198-3.153-4.766-.028-2.977 2.444-4.406 2.56-4.474-1.392-2.04-3.532-2.27-4.29-2.324-2.004-.163-3.913 1.22-4.913 1.22zM15.97 3.16c.84-1.015 1.403-2.434 1.246-3.85-1.207.05-2.67.807-3.536 1.818-.748.86-1.398 2.297-1.22 3.687 1.348.105 2.715-.65 3.51-1.655z"/>
+                    <div class="mac-glass-tile">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 4.17c.66-.81 1.11-1.93.99-3.06-.96.04-2.13.64-2.82 1.45-.6.7-1.13 1.84-.99 2.94.1.08 2.16.07 2.82-.13" fill="currentColor"/>
                         </svg>
                     </div>
                 </div>
@@ -203,9 +218,11 @@
 
             <div class="download-card">
                 <div class="logo-box">
-                    <div class="os-glass-tile">
-                        <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet">
-                            <path d="M12 2A4.5 4.5 0 0 0 7.5 6.5c0 .87.25 1.68.68 2.37C6.34 9.94 5 11.83 5 14c0 2.97 2.43 5.39 5.42 5.48-.44.57-.7 1.27-.7 2.02 0 1.38 1.12 1.5 2.28 1.5h4c1.16 0 2.28-.12 2.28-1.5 0-.75-.26-1.45-.7-2.02 2.99-.09 5.42-2.51 5.42-5.48 0-2.17-1.34-4.06-3.18-5.13.43-.69.68-1.5.68-2.37A4.5 4.5 0 0 0 12 2zm0 2c1.38 0 2.5 1.12 2.5 2.5S13.38 9 12 9 9.5 7.88 9.5 6.5 10.62 4 12 4zm0 7c2.21 0 4 1.79 4 4s-1.79 4-4 4-4-1.79-4-4 1.79-4 4-4z"/>
+                    <div class="linux-glass-tile">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C9.5 2 7.5 4 7.5 6.5c0 .8.2 1.5.6 2.1C6 10 4.5 12 4.5 14.5c0 3 2.5 5.5 5.5 5.5h4c3 0 5.5-2.5 5.5-5.5 0-2.5-1.5-4.5-3.6-5.9.4-.6.6-1.3.6-2.1C16.5 4 14.5 2 12 2z" fill="#23272A"/>
+                            <path d="M12 9c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4z" fill="#FFFFFF" fill-opacity="0.9"/>
+                            <path d="M11 7.5l1-1 1 1h-2zM8.5 20c-1 0-1.5.5-1.5 1s.5 1 1.5 1h1.5v-2H8.5zm7 0h-1.5v2h1.5c1 0 1.5-.5 1.5-1s-.5-1-1.5-1z" fill="#FFD60A"/>
                         </svg>
                     </div>
                 </div>
