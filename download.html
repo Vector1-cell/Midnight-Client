@@ -3,167 +3,295 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Midnight Client | Download</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    
+    <title>Midnight Client - Download</title>
     <style>
+        /* --- Core Midnight Theme Setup --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: radial-gradient(circle at top right, #1e1b4b, #09090b);
+            color: #f4f4f5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* --- Glassmorphism Container --- */
         .download-container {
-            padding: 160px 20px 80px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .download-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
-            margin-top: 60px;
             width: 100%;
-            justify-content: center;
-        }
-
-        .download-card {
-            background: rgba(255, 255, 255, 0.01);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 30px;
-            padding: 60px 40px;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .download-card:hover {
-            transform: translateY(-10px);
+            max-width: 480px;
             background: rgba(255, 255, 255, 0.03);
-        }
-
-        /* --- THE LOGO STYLE ARCHITECTURE (ANTI-DISTORTION) --- */
-        .logo-box {
-            width: 90px;
-            height: 90px;
-            margin-bottom: 35px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
             position: relative;
         }
 
-        /* Strict rules to completely prevent image stretching */
-        .os-logo-img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain; /* Keeps original proportions perfectly */
-            aspect-ratio: 1 / 1; /* Hard locks the dimensions to a perfect square */
-            filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
-            transition: all 0.4s ease;
+        /* Accent Glow behind the card */
+        .download-container::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+            z-index: -1;
+            pointer-events: none;
         }
 
-        /* Micro-interactions on Card Hover */
-        .download-card:hover .os-logo-img {
-            transform: scale(1.08);
-            filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.4)) brightness(1.05);
-        }
-
-        /* Hover Glow Borders matching the native OS colors */
-        .download-card.win-card:hover { border-color: rgba(59, 130, 246, 0.3); }
-        .download-card.mac-card:hover { border-color: rgba(255, 255, 255, 0.2); }
-        .download-card.linux-card:hover { border-color: rgba(250, 204, 21, 0.3); }
-
-        .download-card h3 {
-            font-size: 2.2rem;
-            margin-bottom: 5px;
-            font-weight: 700;
-        }
-
-        .os-specs {
-            color: rgba(255, 255, 255, 0.4);
-            margin-bottom: 40px;
-            font-weight: 500;
-            font-size: 0.95rem;
-        }
-
-        .status-btn {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            color: rgba(255, 255, 255, 0.4);
-            padding: 14px 40px;
-            border-radius: 14px;
+        /* --- Header Styles --- */
+        .brand-title {
+            font-size: 1.2rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #a5b4fc, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 25px;
+        }
+
+        /* --- Premium Card Layout --- */
+        .premium-card {
+            background: rgba(10, 10, 18, 0.6);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 30px 20px;
+            position: relative;
+        }
+
+        .card-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 10px;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .price {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin: 15px 0;
+            color: #fff;
+            letter-spacing: -1px;
+        }
+
+        .price span {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.4);
+            display: block;
+            font-weight: 400;
+            letter-spacing: 0px;
+            margin-top: 2px;
+        }
+
+        /* --- Features List --- */
+        .features-list {
+            list-style: none;
+            padding: 0;
+            margin: 25px 10px;
+            text-align: left;
+        }
+
+        .features-list li {
+            margin-bottom: 12px;
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 0.95rem;
             display: flex;
             align-items: center;
             gap: 10px;
-            cursor: not-allowed;
-            font-size: 13px;
-            transition: all 0.4s ease;
         }
 
-        .download-card:hover .status-btn {
-            color: white;
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.2);
+        .features-list li::before {
+            content: "✓";
+            color: #818cf8;
+            font-weight: bold;
+        }
+
+        /* --- Actions & Gateway Buttons --- */
+        .payment-actions {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* Stripe Button */
+        .btn-stripe {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: #635bff;
+            color: #ffffff;
+            font-weight: 600;
+            text-decoration: none;
+            padding: 14px;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: background 0.2s ease, transform 0.1s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(99, 91, 255, 0.2);
+        }
+
+        .btn-stripe:hover {
+            background: #7a73ff;
+        }
+        
+        .btn-stripe:active {
+            transform: scale(0.98);
+        }
+
+        /* Divider styling */
+        .divider {
+            text-align: center;
+            margin: 10px 0;
+            position: relative;
+        }
+
+        .divider::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 100%;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 1;
+        }
+
+        .divider span {
+            background: #0f0f19; 
+            padding: 0 15px;
+            position: relative;
+            z-index: 2;
+            color: rgba(255, 255, 255, 0.35);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* PayPal container styling adjustments */
+        #paypal-button-container {
+            width: 100%;
+            margin-top: 4px;
+        }
+
+        /* Back to safety navigation link */
+        .back-link {
+            display: inline-block;
+            margin-top: 25px;
+            color: rgba(255, 255, 255, 0.4);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: rgba(255, 255, 255, 0.8);
         }
     </style>
+
+    <!-- 1. Include the PayPal JavaScript SDK (Replace "YOUR_CLIENT_ID" with your real PayPal Developer Client ID) -->
+    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&currency=USD"></script>
 </head>
 <body>
 
-    <nav class="glass-nav">
-        <a href="index.html" class="logo">MIDNIGHT<span>CLIENT</span></a>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="features.html">Features</a></li>
-            <li><a href="#">Store</a></li>
-            <li><a href="#">Support</a></li>
-        </ul>
-        <a href="download.html" class="glass-btn small-btn">Download</a>
-    </nav>
-
-    <section class="download-container">
-        <div class="features-header">
-            <h2>GET <span>MIDNIGHT</span></h2>
-            <p>High-performance builds for every environment.</p>
-        </div>
-
-        <div class="download-grid">
+    <div class="download-container">
+        <div class="brand-title">Midnight Client</div>
+        
+        <!-- Premium Gate Card -->
+        <div class="premium-card">
+            <div class="card-badge">Premium Access</div>
+            <h2>Midnight Client Pro</h2>
+            <p class="price">$9.99 <span>one-time payment</span></p>
             
-            <div class="download-card win-card">
-                <div class="logo-box">
-                    <img src="windows.png" alt="Windows" class="os-logo-img">
-                </div>
-                <h3>Windows</h3>
-                <p class="os-specs">Windows 10 / 11</p>
-                <div class="status-btn">Coming Soon</div>
-            </div>
+            <ul class="features-list">
+                <li>Full client access & lifetime updates</li>
+                <li>Exclusive premium cosmetics & cloaks</li>
+                <li>Priority support & Discord role</li>
+            </ul>
 
-            <div class="download-card mac-card">
-                <div class="logo-box">
-                    <img src="macos.png" alt="macOS" class="os-logo-img">
-                </div>
-                <h3>macOS</h3>
-                <p class="os-specs">M1 / M2 / Intel</p>
-                <div class="status-btn">Coming Soon</div>
-            </div>
+            <div class="payment-actions">
+                <!-- Stripe Button: Swap href value with your Stripe Dashboard Payment Link -->
+                <a href="https://buy.stripe.com/YOUR_ACTUAL_PAYMENT_LINK" class="btn-stripe">
+                    <!-- Clean inline Credit Card/Stripe SVG Icon -->
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                    Pay with Credit Card
+                </a>
 
-            <div class="download-card linux-card">
-                <div class="logo-box">
-                    <img src="linux.png" alt="Linux" class="os-logo-img">
-                </div>
-                <h3>Linux</h3>
-                <p class="os-specs">Universal AppImage</p>
-                <div class="status-btn">Coming Soon</div>
-            </div>
+                <div class="divider"><span>or</span></div>
 
+                <!-- PayPal Button Targets this Element -->
+                <div id="paypal-button-container"></div>
+            </div>
         </div>
-    </section>
 
+        <a href="index.html" class="back-link">← Back to home</a>
+    </div>
+
+    <!-- 2. PayPal Integration Script Logic -->
+    <script>
+        // Renders the smart buttons styling and click actions directly inside your glass container
+        paypal.Buttons({
+            style: {
+                layout: 'vertical',
+                color:  'gold',
+                shape:  'rect',
+                label:  'paypal'
+            },
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: '9.99' // Matches the display price card
+                        },
+                        description: "Midnight Client Pro Access"
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    // Trigger your post-payment actions here!
+                    alert('Transaction completed by ' + details.payer.name.given_name + '!');
+                    
+                    // Redirect them directly to your secure download file string or a success landing page
+                    window.location.href = "download-success.html"; 
+                });
+            }
+        }).render('#paypal-button-container');
+    </script>
 </body>
 </html>
+
+
+            
