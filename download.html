@@ -221,7 +221,7 @@
         }
     </style>
 
-    <!-- 1. Include the PayPal JavaScript SDK (Replace "YOUR_CLIENT_ID" with your real PayPal Developer Client ID) -->
+    <!-- Include the PayPal JavaScript SDK (Optional backup gateway) -->
     <script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&currency=USD"></script>
 </head>
 <body>
@@ -242,9 +242,9 @@
             </ul>
 
             <div class="payment-actions">
-                <!-- Stripe Button: Swap href value with your Stripe Dashboard Payment Link -->
-                <a href="https://buy.stripe.com/YOUR_ACTUAL_PAYMENT_LINK" class="btn-stripe">
-                    <!-- Clean inline Credit Card/Stripe SVG Icon -->
+                <!-- Updated Live Stripe Test Link -->
+                <a href="https://buy.stripe.com/test_fZu4gAaeD6Ei5xs0oI8so00" class="btn-stripe">
+                    <!-- Credit Card SVG Icon -->
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
                     Pay with Credit Card
                 </a>
@@ -259,9 +259,8 @@
         <a href="index.html" class="back-link">← Back to home</a>
     </div>
 
-    <!-- 2. PayPal Integration Script Logic -->
+    <!-- PayPal Integration Script Logic -->
     <script>
-        // Renders the smart buttons styling and click actions directly inside your glass container
         paypal.Buttons({
             style: {
                 layout: 'vertical',
@@ -273,7 +272,7 @@
                 return actions.order.create({
                     purchase_units: [{
                         amount: {
-                            value: '9.99' // Matches the display price card
+                            value: '9.99'
                         },
                         description: "Midnight Client Pro Access"
                     }]
@@ -281,10 +280,7 @@
             },
             onApprove: function(data, actions) {
                 return actions.order.capture().then(function(details) {
-                    // Trigger your post-payment actions here!
                     alert('Transaction completed by ' + details.payer.name.given_name + '!');
-                    
-                    // Redirect them directly to your secure download file string or a success landing page
                     window.location.href = "download-success.html"; 
                 });
             }
@@ -292,6 +288,3 @@
     </script>
 </body>
 </html>
-
-
-            
