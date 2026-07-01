@@ -3,319 +3,329 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Midnight Client - Modules & Features</title>
+    <title>Midnight Client - Modules</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* --- Feature Page Specific Styling --- */
-        .search-container {
-            width: 100%;
-            max-width: 600px;
-            margin: 20px auto 40px auto;
-            position: relative;
+        /* --- Premium Black & Gold Theme Overrides --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', 'Segoe UI', sans-serif;
         }
 
-        .search-input {
-            width: 100%;
-            padding: 16px 20px;
-            background: rgba(10, 10, 10, 0.8);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            border-radius: 12px;
-            color: #fff;
-            font-size: 1rem;
-            outline: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-        }
-
-        .search-input:focus {
-            border-color: #d4af37;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
-        }
-
-        .stats-counter {
-            font-size: 0.85rem;
-            color: #d4af37;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 30px;
-            font-weight: 700;
-        }
-
-        /* --- Modules Grid System --- */
-        .modules-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 20px;
-            width: 100%;
-            max-width: 1200px;
-            padding: 20px 0;
-        }
-
-        /* --- Micro Module Cards --- */
-        .mod-card {
-            background: rgba(15, 15, 15, 0.65);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 14px;
-            padding: 20px;
-            text-align: left;
-            transition: all 0.2s ease;
+        body {
+            background-color: #050505;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(20, 20, 25, 1) 0%, #050505 100%);
+            color: #f4f4f5;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            align-items: center;
+            overflow-x: hidden;
             position: relative;
-            overflow: hidden;
         }
 
-        .mod-card::before {
-            content: '';
-            position: absolute;
+        /* --- Celestial Starfield Background --- */
+        .starfield {
+            position: fixed;
             top: 0;
             left: 0;
-            width: 3px;
+            width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, #d4af37, transparent);
-            opacity: 0.3;
+            z-index: 0;
+            pointer-events: none;
+            background-image: 
+                radial-gradient(1px 1px at 20px 30px, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 75px 130px, rgba(212, 175, 55, 0.6), rgba(0,0,0,0)),
+                radial-gradient(1.5px 1.5px at 150px 60px, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 220px 190px, rgba(212, 175, 55, 0.8), rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 300px 40px, #fff, rgba(0,0,0,0));
+            background-size: 400px 400px;
+            opacity: 0.35;
+        }
+
+        .wrapper {
+            width: 100%;
+            max-width: 1200px;
+            padding: 60px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 1;
+        }
+
+        /* --- Video-Style Celestial Header --- */
+        header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .moon-icon {
+            filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.6));
+            margin-bottom: 20px;
+            animation: moonFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes moonFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+
+        .brand-title {
+            font-size: 2.6rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            background: linear-gradient(135deg, #fff 40%, #d4af37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brand-subtitle {
+            font-size: 1rem;
+            color: #d4af37;
+            font-weight: 700;
+            margin-top: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+        }
+
+        /* --- Glassmorphism Modules Grid --- */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+            width: 100%;
+            margin-bottom: 50px;
+        }
+
+        /* --- Black & Gold Glass Cards --- */
+        .mod-card {
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 175, 55, 0.12);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: left;
+            transition: all 0.25s ease;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
         .mod-card:hover {
             transform: translateY(-3px);
-            border-color: rgba(212, 175, 55, 0.3);
-            background: rgba(20, 20, 20, 0.85);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
-        }
-
-        .mod-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 8px;
+            border-color: rgba(212, 175, 55, 0.4);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.1);
+            background: rgba(15, 15, 15, 0.85);
         }
 
         .mod-title {
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             font-weight: 700;
             color: #fff;
             letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .mod-source {
-            font-size: 0.65rem;
-            font-weight: 800;
-            padding: 2px 6px;
-            border-radius: 4px;
-            text-transform: uppercase;
-        }
-
-        .source-lunar {
-            background: rgba(56, 189, 248, 0.15);
-            color: #38bdf8;
-        }
-
-        .source-feather {
-            background: rgba(244, 63, 94, 0.15);
-            color: #f43f5e;
-        }
-
-        .source-hybrid {
-            background: rgba(212, 175, 55, 0.15);
+        .mod-title::before {
+            content: "✦";
             color: #d4af37;
+            font-size: 0.9rem;
         }
 
         .mod-desc {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: rgba(255, 255, 255, 0.5);
-            line-height: 1.4;
+            line-height: 1.5;
         }
 
-        .mod-toggle {
-            width: 30px;
-            height: 16px;
-            background: rgba(212, 175, 55, 0.2);
-            border-radius: 10px;
-            position: relative;
-            margin-top: 15px;
-            align-self: flex-end;
+        /* --- Navigation Link Style From Video --- */
+        .back-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: rgba(255, 255, 255, 0.4);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: color 0.2s, text-shadow 0.2s;
+            font-weight: 600;
+            z-index: 10;
         }
 
-        .mod-toggle::after {
-            content: '';
-            position: absolute;
-            top: 2px;
-            left: 2px;
-            width: 12px;
-            height: 12px;
-            background: #d4af37;
-            border-radius: 50%;
+        .back-link:hover {
+            color: #d4af37;
+            text-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
         }
 
-        /* Load More Center Button Container */
-        .pagination-container {
+        /* --- Footer --- */
+        footer {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
             width: 100%;
-            display: flex;
-            justify-content: center;
-            margin: 40px 0 20px 0;
+            max-width: 400px;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .credit-title {
+            font-size: 0.75rem;
+            color: rgba(212, 175, 55, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .owner-block {
+            margin-bottom: 12px;
+        }
+
+        .owner-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 1px;
+        }
+
+        .owner-label {
+            font-size: 0.75rem;
+            color: #d4af37;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-top: 2px;
+        }
+
+        .tester-block {
+            margin-top: 15px;
+            background: rgba(212, 175, 55, 0.03);
+            border: 1px dashed rgba(212, 175, 55, 0.15);
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .tester-name {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .tester-label {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.4);
+            text-transform: uppercase;
+            margin-top: 2px;
+            letter-spacing: 0.5px;
         }
     </style>
 </head>
 <body>
     <div class="starfield"></div>
 
-    <nav class="navbar">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="features.html" class="nav-link active">Features</a>
-        <a href="download.html" class="nav-link">Download</a>
-    </nav>
-
     <div class="wrapper">
         <header>
             <div class="moon-icon">
-                <svg width="50" height="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="55" height="55" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 3C10.5 5.5 10.5 9.5 13 12C15.5 14.5 19.5 14.5 22 13C21 17 18 20 13.5 20.5C8.5 21 4 17 3.5 11.5C3 6.5 7.5 3.5 12 3Z" fill="#d4af37" stroke="#fce083" stroke-width="1" stroke-linejoin="round"/>
                 </svg>
             </div>
-            <div class="brand-title">Client Modules</div>
-            <div class="brand-subtitle">The combined power of Lunar & Feather infrastructure optimized for Midnight</div>
+            <div class="brand-title">Midnight Modules</div>
+            <div class="brand-subtitle">150+ Premium Features Inside</div>
         </header>
 
-        <div class="stats-counter" id="counter-display">Loading Modules...</div>
+        <main class="modules-grid" id="features-container"></main>
 
-        <div class="search-container">
-            <input type="text" id="search-bar" class="search-input" placeholder="Search 250 modules (e.g., Keystrokes, Motion Blur, Waypoints)...">
-        </div>
+        <a href="index.html" class="back-link">← Back to home</a>
 
-        <main class="modules-grid" id="modules-container"></main>
-
-        <div class="pagination-container">
-            <button id="load-more-btn" class="btn-gold btn-hollow" style="padding: 14px 40px; font-size: 0.95rem;">Show More (50+)</button>
-        </div>
+        <footer>
+            <div class="credit-title">Development Credits</div>
+            <div class="owner-block">
+                <div class="owner-name">ItzVec</div>
+                <div class="owner-label">Founder & Lead Developer</div>
+            </div>
+            <div class="tester-block">
+                <div class="tester-name">phidol domond</div>
+                <div class="tester-label">First Early Access Partner</div>
+            </div>
+        </footer>
     </div>
 
-    <footer>
-        <div class="credit-title">Development Credits</div>
-        <div class="owner-block">
-            <div class="owner-name">ItzVec</div>
-            <div class="owner-label">Founder & Lead Developer</div>
-        </div>
-        <div class="tester-block">
-            <div class="tester-name">phidol domond</div>
-            <div class="tester-label">First Early Access Partner</div>
-        </div>
-    </footer>
-
     <script>
-        // High-profile real core modules from Lunar and Feather Clients (25 items)
-        const coreModules = [
-            { name: "Keystrokes", desc: "Displays customizable WASD inputs, mouse clicks, and current CPS speeds.", src: "lunar" },
-            { name: "CPS Tracker", desc: "Tracks right and left mouse click metrics directly onto your active HUD layout.", src: "lunar" },
-            { name: "FPS Indicator", desc: "Configurable overlay showing real-time frames per second rendering values.", src: "feather" },
-            { name: "Motion Blur", desc: "Implements smooth accumulation-buffer screen blurring parameters.", src: "hybrid" },
-            { name: "ToggleSprint", desc: "Allows locking sprint and sneak actions without continuous keyboard pressure.", src: "lunar" },
-            { name: "ArmorStatus", desc: "Displays current durability values and icons for all equipped armor parts.", src: "feather" },
-            { name: "Item Physics", desc: "Drops items flat onto blocks with realistic 3D rotational mechanics.", src: "hybrid" },
-            { name: "Zoom Customizer", desc: "Scroll-controlled cinematic camera zooming patches with smooth rendering transitions.", src: "feather" },
-            { name: "DirectionHUD", desc: "A sleek compass strip tracking coordinates and cardinal directions.", src: "lunar" },
-            { name: "Waypoints Mod", desc: "Save, label, and beam custom light-pillars to coordinate locations globally.", src: "feather" },
-            { name: "Crosshair Editor", desc: "Fully custom crosshair overlay manager containing precision tuning shapes.", src: "lunar" },
-            { name: "Time Changer", desc: "Alter world client-side rendering times independently of server clocks.", src: "hybrid" },
-            { name: "Scoreboard Edit", desc: "Scale, modify, reposition, or strip side-panel server text fields completely.", src: "feather" },
-            { name: "Reach Display", desc: "Measures exact attack distances in block measurements on hit registrations.", src: "lunar" },
-            { name: "Combo Tracker", desc: "Tracks running consecutive attacks land metrics during target engagements.", src: "lunar" },
-            { name: "Block Outline", desc: "Alter selection colors, border thickness, and inner fill settings on blocks.", src: "feather" },
-            { name: "Status Indicators", desc: "Displays active potion attributes, timers, and icon graphics neatly.", src: "lunar" },
-            { name: "Ping Gauge", desc: "Monitors round-trip data timing connections directly back to servers.", src: "feather" },
-            { name: "Chat Multiplier", desc: "Enhances chat capabilities with background shadows, clear text, and history lengths.", src: "hybrid" },
-            { name: "AutoGG", desc: "Instantly sends a tailored sportsmanlike endgame text message upon match completion.", src: "lunar" },
-            { name: "Nick Hider", desc: "Replaces user identities locally to bypass tracking during stream scenarios.", src: "feather" },
-            { name: "TNT Countdown", desc: "Displays dynamic fuse ticks above primed explosive entities safely.", src: "lunar" },
-            { name: "Chunk Animator", desc: "Enables smooth drop or fade interpolation routines during terrain loadups.", src: "hybrid" },
-            { name: "Clear Water", desc: "Strips underwater fog layers completely to optimize visible clarity fields.", src: "lunar" },
-            { name: "Freelook", desc: "Enables detached 360-degree camera orbits without shifting avatar alignment.", src: "feather" }
+        const cleanModules = [
+            { name: "Keystrokes Overlay", desc: "Displays fully customizable WASD rendering metrics and direct active mouse clicks on screen." },
+            { name: "CPS Tracker", desc: "Monitors real-time right and left click speeds cleanly aligned inside your custom HUD configuration." },
+            { name: "FPS Indicator", desc: "Sleek, lightweight performance rendering module tracking frames per second dynamically." },
+            { name: "Cinematic Motion Blur", desc: "Implements high-fidelity accumulation screen blending routines for ultimate visual fluidity." },
+            { name: "ToggleSprint Engine", desc: "Allows toggle-locking sprint and sneak functionalities perfectly without repetitive holding down." },
+            { name: "Armor Status Matrix", desc: "Keeps real-time tracking data on armor durability levels, displaying clean active element graphics." },
+            { name: "Item Physics Patch", desc: "Gives items dropped on the ground flat, realistic 3D rotational spatial physics rendering behaviors." },
+            { name: "Smooth Zoom Customizer", desc: "Scroll-controlled camera zooming mechanics supporting smooth variable field-of-view changes." },
+            { name: "Directional Compass HUD", desc: "A luxury navigation bar showing exact cardinal headings and dynamic target bearings." },
+            { name: "Waypoint Beam Marker", desc: "Save coordinate points and beam high-visibility light pillars straight into the sky grid." },
+            { name: "Crosshair Designer", desc: "Complete custom vector crosshair system built with absolute color and layout variables." },
+            { name: "Client-Side Time Changer", desc: "Freeze, shift, or manipulate your client world clock rendering independently of host servers." },
+            { name: "Scoreboard Customizer", desc: "Rescale, text-tint, reposition, or hide sidebar statistics display frameworks safely." },
+            { name: "Melee Reach Display", desc: "Measures and overlays exact block hitting registration metrics instantly during contact." },
+            { name: "PvP Combo Tracker", desc: "Accurately registers and counts consecutive successful attacks landed on targeted enemies." },
+            { name: "Block Outline Enhancer", desc: "Modify vector colors, width values, and shading patterns of active selection lines." },
+            { name: "Active Status Monitor", desc: "Displays current potion effects, detailed countdown timelines, and high-res icon matrices." },
+            { name: "Dynamic Ping Monitor", desc: "Tracks round-trip latency data streams natively directly to avoid network anomalies." },
+            { name: "Advanced Chat Multiplier", desc: "Adds smooth custom line spacing, complete background shading controls, and limitless history logs." },
+            { name: "Automated Arena Honors", desc: "Instantly delivers structured sportsmanlike sports messages to match chat rooms dynamically." },
+            { name: "Streamer Name Mask", desc: "Anonymizes your screen identity patterns locally to defeat targeting vulnerabilities live." },
+            { name: "TNT Fuse Countdown", desc: "Displays precision ignition ticks right over primed explosive entities cleanly." },
+            { name: "Smooth Chunk Animator", desc: "Forces newly loaded chunks to smoothly morph up from the horizon line seamlessly." },
+            { name: "Crystal Clear Water", desc: "Strips out dark underwater visibility fog bounds to maximize diving field visibility paths." },
+            { name: "360° Freelook Camera", desc: "Detach camera tracking systems to survey your surroundings completely without shifting rotation." },
+            { name: "Particle Density Booster", desc: "Optimizes critical hit particle rendering limits to enhance combat verification visual fields." },
+            { name: "Smart Memory Recycler", desc: "Periodically cleans up runtime garbage collection caches to stabilize frame-times during map swaps." },
+            { name: "Hurt Cam Stabilizer", desc: "Adjusts or completely eliminates structural camera tilt shakes during incoming attack states." },
+            { name: "Dynamic Fullbright Patch", desc: "Illuminates dark caves and structural grid pathways perfectly with zero performance degradation." },
+            { name: "Bossbar Position Modifier", desc: "Enables scaling and drag-and-drop structural movement mechanics for world boss meters." },
+            { name: "Dropped Item Tracker", desc: "Draws elegant, translucent glow vectors around dropped assets on the map field." },
+            { name: "Compact Coordinates HUD", desc: "Displays absolute X, Y, Z positioning points elegantly using reduced visual footprints." },
+            { name: "Enchantment Glint Editor", desc: "Take charge of glowing weapon layers, customizing speeds and hue spectrum curves." },
+            { name: "Floating Inventory HUD", desc: "Renders miniature interactive mirrors of your active bag layers directly to your view panel." },
+            { name: "Adaptive FOV Engine", desc: "Intelligently compensates for swift sprinting velocity speeds to maintain aiming consistency." },
+            { name: "Level Head Analytics", desc: "Gathers and displays net network levels over nearby entities on compatible servers." },
+            { name: "Clean Tab-List Overlay", desc: "Re-architects multiplayer listings using compact formats and customizable grid styles." },
+            { name: "Network Packet Shield", desc: "Buffers data stream exchanges safely to optimize network responsiveness during stress scenarios." },
+            { name: "Local Weather Changer", desc: "Instantly force clear blue skies, rainy weather states, or snowfall visuals client-side." },
+            { name: "Screen Title Controller", desc: "Allows moving or completely diminishing large server announcement overlays from center view." },
+            { name: "Entity Hitbox Visualizer", desc: "Renders precise mathematical collision boxes around targets for perfect aim accuracy testing." },
+            { name: "Damage Tilt Stabilizer", desc: "Calibrates vector direction indicators to keep camera focal points steady under pressure." },
+            { name: "Cosmetics & Cloaks Manager", desc: "Allows full client-side attachment mapping setups for celestial wings and premium wraps." },
+            { name: "Skin Blinker Synchronization", desc: "Automates skin outer layers to cycle animations evenly in perfect timing loops." },
+            { name: "Server Connection Monitor", desc: "Outputs minor uptime alert statistics directly to your notification array." },
+            { name: "Attack Cooldown Indicator", desc: "Presents precision swing reset timelines right inside your reticle view center." },
+            { name: "Cross-Server Quick Chat", desc: "Binds macro communication pathways to private channels across instances smoothly." },
+            { name: "Low-Fire Optimization Patch", desc: "Lowers screen-space ignition block visuals significantly to ensure full line of sight." },
+            { name: "Dynamic Reticle Scaling", desc: "Transforms reticle scaling properties dynamically based on movement speeds to maintain center alignment." },
+            { name: "Celestial Performance Core", desc: "Overhauls rendering pipelines to guarantee maximum frames inside demanding environments." }
         ];
 
-        // Structural expansions array formulas mapping out to land perfectly at 250 items total
-        const subCategories = ["HUD", "Render", "Performance", "PvP", "Audio", "Cosmetic", "Utility", "Network", "Graphics", "Interface"];
-        const modKeywords = ["Stabilizer", "Multiplier", "Clipper", "Filter", "Overrider", "Optimizer", "Enhancer", "Cacher", "Decoder", "Packer"];
-        
-        const fullModuleList = [...coreModules];
-        
-        // Loop runs 225 times (25 core + 225 generated = exactly 250 options)
-        for (let i = 1; i <= 225; i++) {
-            const cat = subCategories[i % subCategories.length];
-            const key = modKeywords[i % modKeywords.length];
-            const sourceChoice = i % 3 === 0 ? "lunar" : (i % 3 === 1 ? "feather" : "hybrid");
-            
-            fullModuleList.push({
-                name: `${cat} ${key} v${1 + (i % 3)}.${i}`,
-                desc: `Advanced structural client branch submodule optimizing celestial engine ${cat.toLowerCase()} matrix parameters.`,
-                src: sourceChoice
-            });
-        }
+        const targetGrid = document.getElementById('features-container');
 
-        // Pagination Tracking Variables
-        let currentLimit = 50; 
-        let filteredList = [...fullModuleList];
-
-        // DOM Target Node Hooks
-        const container = document.getElementById('modules-container');
-        const counterDisplay = document.getElementById('counter-display');
-        const searchBar = document.getElementById('search-bar');
-        const loadMoreBtn = document.getElementById('load-more-btn');
-
-        // Render Function Engine
-        function displayModules() {
-            container.innerHTML = "";
-            
-            // Slice the active list array based on the current progressive limit
-            const visibleModules = filteredList.slice(0, currentLimit);
-            
-            counterDisplay.innerText = `Viewing ${visibleModules.length} of ${filteredList.length} Modules`;
-            
-            visibleModules.forEach(mod => {
-                const card = document.createElement('div');
-                card.className = 'mod-card';
-                card.innerHTML = `
-                    <div>
-                        <div class="mod-header">
-                            <span class="mod-title">${mod.name}</span>
-                            <span class="mod-source source-${mod.src}">${mod.src}</span>
-                        </div>
-                        <p class="mod-desc">${mod.desc}</p>
-                    </div>
-                    <div class="mod-toggle"></div>
-                `;
-                container.appendChild(card);
-            });
-
-            // If we've displayed everything available in the filtered set, hide the action button
-            if (currentLimit >= filteredList.length) {
-                loadMoreBtn.style.display = 'none';
-            } else {
-                loadMoreBtn.style.display = 'block';
-            }
-        }
-
-        // Click Progression Event Listener (Increments by 50 up to 250)
-        loadMoreBtn.addEventListener('click', () => {
-            currentLimit += 50;
-            displayModules();
+        // Loop renders exactly all 50 items instantly without filters
+        cleanModules.forEach(mod => {
+            const card = document.createElement('div');
+            card.className = 'mod-card';
+            card.innerHTML = `
+                <div class="mod-title">${mod.name}</div>
+                <div class="mod-desc">${mod.desc}</div>
+            `;
+            targetGrid.appendChild(card);
         });
-
-        // Search Engine Integration with Auto-Pagination Reset
-        searchBar.addEventListener('input', (e) => {
-            const term = e.target.value.toLowerCase();
-            filteredList = fullModuleList.filter(mod => 
-                mod.name.toLowerCase().includes(term) || 
-                mod.desc.toLowerCase().includes(term) ||
-                mod.src.toLowerCase().includes(term)
-            );
-            currentLimit = 50; // Reset back to initial 50 visible elements on active filters
-            displayModules();
-        });
-
-        // Initialize display stack layout immediately on startup
-        displayModules();
     </script>
 </body>
 </html>
