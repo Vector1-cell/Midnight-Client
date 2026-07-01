@@ -3,128 +3,319 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Midnight Client | Features</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>Midnight Client - Modules & Features</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* --- Feature Page Specific Styling --- */
+        .search-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto 40px auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 16px 20px;
+            background: rgba(10, 10, 10, 0.8);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        .search-input:focus {
+            border-color: #d4af37;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+        }
+
+        .stats-counter {
+            font-size: 0.85rem;
+            color: #d4af37;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        /* --- Modules Grid System --- */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px 0;
+        }
+
+        /* --- Micro Module Cards --- */
+        .mod-card {
+            background: rgba(15, 15, 15, 0.65);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 14px;
+            padding: 20px;
+            text-align: left;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mod-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(to bottom, #d4af37, transparent);
+            opacity: 0.3;
+        }
+
+        .mod-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(212, 175, 55, 0.3);
+            background: rgba(20, 20, 20, 0.85);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+        }
+
+        .mod-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .mod-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 0.5px;
+        }
+
+        .mod-source {
+            font-size: 0.65rem;
+            font-weight: 800;
+            padding: 2px 6px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .source-lunar {
+            background: rgba(56, 189, 248, 0.15);
+            color: #38bdf8;
+        }
+
+        .source-feather {
+            background: rgba(244, 63, 94, 0.15);
+            color: #f43f5e;
+        }
+
+        .source-hybrid {
+            background: rgba(212, 175, 55, 0.15);
+            color: #d4af37;
+        }
+
+        .mod-desc {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.4;
+        }
+
+        .mod-toggle {
+            width: 30px;
+            height: 16px;
+            background: rgba(212, 175, 55, 0.2);
+            border-radius: 10px;
+            position: relative;
+            margin-top: 15px;
+            align-self: flex-end;
+        }
+
+        .mod-toggle::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 12px;
+            height: 12px;
+            background: #d4af37;
+            border-radius: 50%;
+        }
+
+        /* Load More Center Button Container */
+        .pagination-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin: 40px 0 20px 0;
+        }
+    </style>
 </head>
 <body>
+    <div class="starfield"></div>
 
-    <!-- Glass Navbar -->
-    <nav class="glass-nav">
-        <a href="index.html" class="logo">MIDNIGHT<span>CLIENT</span></a>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="features.html" class="active-link">Features</a></li>
-            <li><a href="#">Store</a></li>
-            <li><a href="#">Support</a></li>
-        </ul>
-        <a href="download.html" class="glass-btn small-btn">Download</a>
+    <nav class="navbar">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="features.html" class="nav-link active">Features</a>
+        <a href="download.html" class="nav-link">Download</a>
     </nav>
 
-    <!-- Main Features Content Matrix -->
-    <section class="features-container">
-        <div class="features-header">
-            <h2>CLIENT <span>FEATURES</span></h2>
-            <p>Engineered for competitive players who demand absolute performance.</p>
+    <div class="wrapper">
+        <header>
+            <div class="moon-icon">
+                <svg width="50" height="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 3C10.5 5.5 10.5 9.5 13 12C15.5 14.5 19.5 14.5 22 13C21 17 18 20 13.5 20.5C8.5 21 4 17 3.5 11.5C3 6.5 7.5 3.5 12 3Z" fill="#d4af37" stroke="#fce083" stroke-width="1" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div class="brand-title">Client Modules</div>
+            <div class="brand-subtitle">The combined power of Lunar & Feather infrastructure optimized for Midnight</div>
+        </header>
+
+        <div class="stats-counter" id="counter-display">Loading Modules...</div>
+
+        <div class="search-container">
+            <input type="text" id="search-bar" class="search-input" placeholder="Search 250 modules (e.g., Keystrokes, Motion Blur, Waypoints)...">
         </div>
+
+        <main class="modules-grid" id="modules-container"></main>
+
+        <div class="pagination-container">
+            <button id="load-more-btn" class="btn-gold btn-hollow" style="padding: 14px 40px; font-size: 0.95rem;">Show More (50+)</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="credit-title">Development Credits</div>
+        <div class="owner-block">
+            <div class="owner-name">ItzVec</div>
+            <div class="owner-label">Founder & Lead Developer</div>
+        </div>
+        <div class="tester-block">
+            <div class="tester-name">phidol domond</div>
+            <div class="tester-label">First Early Access Partner</div>
+        </div>
+    </footer>
+
+    <script>
+        // High-profile real core modules from Lunar and Feather Clients (25 items)
+        const coreModules = [
+            { name: "Keystrokes", desc: "Displays customizable WASD inputs, mouse clicks, and current CPS speeds.", src: "lunar" },
+            { name: "CPS Tracker", desc: "Tracks right and left mouse click metrics directly onto your active HUD layout.", src: "lunar" },
+            { name: "FPS Indicator", desc: "Configurable overlay showing real-time frames per second rendering values.", src: "feather" },
+            { name: "Motion Blur", desc: "Implements smooth accumulation-buffer screen blurring parameters.", src: "hybrid" },
+            { name: "ToggleSprint", desc: "Allows locking sprint and sneak actions without continuous keyboard pressure.", src: "lunar" },
+            { name: "ArmorStatus", desc: "Displays current durability values and icons for all equipped armor parts.", src: "feather" },
+            { name: "Item Physics", desc: "Drops items flat onto blocks with realistic 3D rotational mechanics.", src: "hybrid" },
+            { name: "Zoom Customizer", desc: "Scroll-controlled cinematic camera zooming patches with smooth rendering transitions.", src: "feather" },
+            { name: "DirectionHUD", desc: "A sleek compass strip tracking coordinates and cardinal directions.", src: "lunar" },
+            { name: "Waypoints Mod", desc: "Save, label, and beam custom light-pillars to coordinate locations globally.", src: "feather" },
+            { name: "Crosshair Editor", desc: "Fully custom crosshair overlay manager containing precision tuning shapes.", src: "lunar" },
+            { name: "Time Changer", desc: "Alter world client-side rendering times independently of server clocks.", src: "hybrid" },
+            { name: "Scoreboard Edit", desc: "Scale, modify, reposition, or strip side-panel server text fields completely.", src: "feather" },
+            { name: "Reach Display", desc: "Measures exact attack distances in block measurements on hit registrations.", src: "lunar" },
+            { name: "Combo Tracker", desc: "Tracks running consecutive attacks land metrics during target engagements.", src: "lunar" },
+            { name: "Block Outline", desc: "Alter selection colors, border thickness, and inner fill settings on blocks.", src: "feather" },
+            { name: "Status Indicators", desc: "Displays active potion attributes, timers, and icon graphics neatly.", src: "lunar" },
+            { name: "Ping Gauge", desc: "Monitors round-trip data timing connections directly back to servers.", src: "feather" },
+            { name: "Chat Multiplier", desc: "Enhances chat capabilities with background shadows, clear text, and history lengths.", src: "hybrid" },
+            { name: "AutoGG", desc: "Instantly sends a tailored sportsmanlike endgame text message upon match completion.", src: "lunar" },
+            { name: "Nick Hider", desc: "Replaces user identities locally to bypass tracking during stream scenarios.", src: "feather" },
+            { name: "TNT Countdown", desc: "Displays dynamic fuse ticks above primed explosive entities safely.", src: "lunar" },
+            { name: "Chunk Animator", desc: "Enables smooth drop or fade interpolation routines during terrain loadups.", src: "hybrid" },
+            { name: "Clear Water", desc: "Strips underwater fog layers completely to optimize visible clarity fields.", src: "lunar" },
+            { name: "Freelook", desc: "Enables detached 360-degree camera orbits without shifting avatar alignment.", src: "feather" }
+        ];
+
+        // Structural expansions array formulas mapping out to land perfectly at 250 items total
+        const subCategories = ["HUD", "Render", "Performance", "PvP", "Audio", "Cosmetic", "Utility", "Network", "Graphics", "Interface"];
+        const modKeywords = ["Stabilizer", "Multiplier", "Clipper", "Filter", "Overrider", "Optimizer", "Enhancer", "Cacher", "Decoder", "Packer"];
         
-        <!-- Core Features Grid Layout -->
-        <div class="features-grid">
-            <div class="glass-card">
-                <span class="card-icon">🌐</span>
-                <h3>Ping Booster</h3>
-                <p>Optimizes network packets and stabilizes your connection route to game servers, heavily reducing registry delays and routing spikes.</p>
-            </div>
+        const fullModuleList = [...coreModules];
+        
+        // Loop runs 225 times (25 core + 225 generated = exactly 250 options)
+        for (let i = 1; i <= 225; i++) {
+            const cat = subCategories[i % subCategories.length];
+            const key = modKeywords[i % modKeywords.length];
+            const sourceChoice = i % 3 === 0 ? "lunar" : (i % 3 === 1 ? "feather" : "hybrid");
             
-            <div class="glass-card">
-                <span class="card-icon">⚡</span>
-                <h3>FPS Booster</h3>
-                <p>Features enhanced multithreaded rendering, optimized entities, and custom fast-math algorithms to triple your frame rate instantly.</p>
-            </div>
+            fullModuleList.push({
+                name: `${cat} ${key} v${1 + (i % 3)}.${i}`,
+                desc: `Advanced structural client branch submodule optimizing celestial engine ${cat.toLowerCase()} matrix parameters.`,
+                src: sourceChoice
+            });
+        }
+
+        // Pagination Tracking Variables
+        let currentLimit = 50; 
+        let filteredList = [...fullModuleList];
+
+        // DOM Target Node Hooks
+        const container = document.getElementById('modules-container');
+        const counterDisplay = document.getElementById('counter-display');
+        const searchBar = document.getElementById('search-bar');
+        const loadMoreBtn = document.getElementById('load-more-btn');
+
+        // Render Function Engine
+        function displayModules() {
+            container.innerHTML = "";
             
-            <div class="glass-card">
-                <span class="card-icon">⚙️</span>
-                <h3>150+ Modules</h3>
-                <p>Fully customize your UI, keystrokes, crosshairs, armor status, mini-maps, and HUD elements with a sprawling, toggleable mod repository.</p>
-            </div>
-        </div>
+            // Slice the active list array based on the current progressive limit
+            const visibleModules = filteredList.slice(0, currentLimit);
+            
+            counterDisplay.innerText = `Viewing ${visibleModules.length} of ${filteredList.length} Modules`;
+            
+            visibleModules.forEach(mod => {
+                const card = document.createElement('div');
+                card.className = 'mod-card';
+                card.innerHTML = `
+                    <div>
+                        <div class="mod-header">
+                            <span class="mod-title">${mod.name}</span>
+                            <span class="mod-source source-${mod.src}">${mod.src}</span>
+                        </div>
+                        <p class="mod-desc">${mod.desc}</p>
+                    </div>
+                    <div class="mod-toggle"></div>
+                `;
+                container.appendChild(card);
+            });
 
-        <!-- Modules Section -->
-        <div class="features-header" style="margin-top: 100px; margin-bottom: 20px;">
-            <h2>EXPLORE THE <span>MODULES</span></h2>
-            <p>A sneak peek at some of the <span class="highlight-text">150+ built-in mods</span> available right in your in-game menu.</p>
-        </div>
+            // If we've displayed everything available in the filtered set, hide the action button
+            if (currentLimit >= filteredList.length) {
+                loadMoreBtn.style.display = 'none';
+            } else {
+                loadMoreBtn.style.display = 'block';
+            }
+        }
 
-        <!-- Category 1: Performance -->
-        <div class="mod-category-title">Performance & Network</div>
-        <div class="features-grid">
-            <div class="glass-card">
-                <div class="mod-status-badge">Optimize</div>
-                <span class="card-icon">🧠</span>
-                <h3>Memory Cleaner</h3>
-                <p>Automatically flushes unused junk files from your system RAM every few minutes to prevent sudden frame drops and game stutters.</p>
-            </div>
-            <div class="glass-card">
-                <div class="mod-status-badge">Network</div>
-                <span class="card-icon">📉</span>
-                <h3>Choke Reducer</h3>
-                <p>Forces strict bandwidth allocation straight to your game, ensuring combat registry remains flawless even on crowded networks.</p>
-            </div>
-            <div class="glass-card">
-                <div class="mod-status-badge">Graphics</div>
-                <span class="card-icon">🍃</span>
-                <h3>Low-Poly Culling</h3>
-                <p>Hides unseen map geometry behind walls dynamically, saving massive CPU cycles during heavy multiplayer battles.</p>
-            </div>
-        </div>
+        // Click Progression Event Listener (Increments by 50 up to 250)
+        loadMoreBtn.addEventListener('click', () => {
+            currentLimit += 50;
+            displayModules();
+        });
 
-        <!-- Category 2: HUD Customization -->
-        <div class="mod-category-title">HUD & Visuals</div>
-        <div class="features-grid">
-            <div class="glass-card">
-                <div class="mod-status-badge">HUD</div>
-                <span class="card-icon">⌨️</span>
-                <h3>Keystrokes v2</h3>
-                <p>Displays your WASD movement keys, mouse buttons, spacebar, and real-time CPS on your screen with total color customizability.</p>
-            </div>
-            <div class="glass-card">
-                <div class="mod-status-badge">Visual</div>
-                <span class="card-icon">🛡️</span>
-                <h3>Armor Status</h3>
-                <p>Keep track of your armor's durability and held item stats in the corner of your screen without opening your inventory.</p>
-            </div>
-            <div class="glass-card">
-                <div class="mod-status-badge">HUD</div>
-                <span class="card-icon">🧭</span>
-                <h3>Direction HUD</h3>
-                <p>Adds a sleek, adjustable compass at the top of your screen to make team callouts and navigation seamless.</p>
-            </div>
-        </div>
+        // Search Engine Integration with Auto-Pagination Reset
+        searchBar.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            filteredList = fullModuleList.filter(mod => 
+                mod.name.toLowerCase().includes(term) || 
+                mod.desc.toLowerCase().includes(term) ||
+                mod.src.toLowerCase().includes(term)
+            );
+            currentLimit = 50; // Reset back to initial 50 visible elements on active filters
+            displayModules();
+        });
 
-        <!-- Category 3: Combat & Gameplay -->
-        <div class="mod-category-title">Combat & Gameplay</div>
-        <div class="features-grid">
-            <div class="glass-card">
-                <div class="mod-status-badge">Gameplay</div>
-                <span class="card-icon">🏃</span>
-                <h3>Toggle Sprint</h3>
-                <p>Allows you to toggle your sprinting and sneaking states automatically so you don't have to hold down modifiers manually.</p>
-            </div>
-            <div class="glass-card">
-                <div class="mod-status-badge">Combat</div>
-                <span class="card-icon">🔍</span>
-                <h3>Opti-Zoom</h3>
-                <p>Smoothly scroll and zoom your camera view into distant areas using a hotkey to scout out targets instantly.</p>
-            </div>
-            <div class="glass-card">
-                <div class="mod-status-badge">Visual</div>
-                <span class="card-icon">💎</span>
-                <h3>Item Physics</h3>
-                <p>Gives dropped floor items realistic, physics-based rotation and flat grounding, dramatically improving item visuals.</p>
-            </div>
-        </div>
-    </section>
-
+        // Initialize display stack layout immediately on startup
+        displayModules();
+    </script>
 </body>
 </html>
